@@ -9,13 +9,13 @@
 
 using namespace std;
 
-// Maximum allowed fill-ups constant
+// Maximum allowed fill-ups 
 const int MAX_FILLUPS = 20;
 
-// Conversion constant: 1 Liter = 0.2641720526 Gallons
+// Conversion constant
 const double LITERS_TO_GALLONS = 0.2641720526;
 
-// Function Prototypes (Strictly mandated by project specifications)
+// Function Prototypes
 double toGallons(double amount, char unit);
 double fillUpCost(double amount, double pricePerUnit);
 double milesPerGallon(double miles, double gallons);
@@ -25,8 +25,7 @@ int indexOfSmallest(double values[], int count);
 int indexOfLargest(double values[], int count);
 
 int main() {
-    // Array declarations for raw log input
-    // Odometer needs space for starting reading + MAX_FILLUPS
+    // Array declarations 
     double odometer[MAX_FILLUPS + 1];
     double amountPumped[MAX_FILLUPS];
     char unit[MAX_FILLUPS];
@@ -43,11 +42,11 @@ int main() {
     int numFillups = 0;
     double budget = 0.0;
 
-    // 1. Get Starting Odometer Reading
+    // Get Starting Odometer Reading
     cout << "Enter starting odometer reading: ";
     cin >> odometer[0];
 
-    // 2. Get Number of Fill-ups with validation (1 to 20)
+    // Get Number of Fill-ups with validation (1 to 20)
     cout << "Enter number of fill-ups: ";
     cin >> numFillups;
     while (numFillups < 1 || numFillups > MAX_FILLUPS) {
@@ -56,7 +55,7 @@ int main() {
         cin >> numFillups;
     }
 
-    // 3. Input each fill-up with validation
+    // Input each fill-up with validation
     for (int i = 0; i < numFillups; i++) {
         bool valid = false;
         while (!valid) {
@@ -90,12 +89,12 @@ int main() {
         }
     }
 
-    // 4. Get Fuel Budget
+    // Get Fuel Budget
     cout << "Enter fuel budget for the trip: ";
     cin >> budget;
     cout << "\n";
 
-    // 5. Compute Leg Metrics
+    // Compute Leg Metrics
     for (int i = 0; i < numFillups; i++) {
         legMiles[i] = odometer[i + 1] - odometer[i];
         legGallons[i] = toGallons(amountPumped[i], unit[i]);
@@ -106,7 +105,7 @@ int main() {
         legCostPerMile[i] = costPerMile(legCost[i], legMiles[i]);
     }
 
-    // 6. Compute Whole Trip Totals
+    // Compute Whole Trip Totals
     double totalMiles = sumOf(legMiles, numFillups);
     double totalGallons = sumOf(legGallons, numFillups);
     double totalCost = sumOf(legCost, numFillups);
@@ -117,7 +116,7 @@ int main() {
     int cheapestIdx = indexOfSmallest(legCostPerMile, numFillups);
     int expensiveIdx = indexOfLargest(legCostPerMile, numFillups);
 
-    // 7. Print Report using printf
+    // Print Report using printf
     printf("%-5s %10s %10s %8s %10s %12s\n", "Leg", "Miles", "Gallons", "MPG", "Cost", "Cost/mile");
     for (int i = 0; i < numFillups; i++) {
         printf("%-5d %10.1f %10.2f %8.1f $%9.2f $%11.3f\n",
@@ -148,7 +147,7 @@ int main() {
     return 0;
 }
 
-// Function Implementations
+// Functions
 
 double toGallons(double amount, char unit) {
     if (toupper(unit) == 'L') {
