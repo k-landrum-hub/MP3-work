@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="MP3 work/MP3 work.vcxproj" />
+  <Project Path="MP3 work/MP3 work.vcxproj" Id="01e14cb2-1507-4895-b511-0e80b94c2732" />
 </Solution>
